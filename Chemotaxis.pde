@@ -1,16 +1,32 @@
 
 
-Bacteria one;
+
+Bacteria[] colony;
+
+
+//Bacteria one;
+
  //declare bacteria variables here   
  void setup()   
  {     
  	size(500,500);
- 	one = new Bacteria(250,250,0);//initialize bacteria variables here   
+
+ 	colony = new Bacteria[8];
+ 	for (int i = 0; i < colony.length; i++)
+ 	{
+ 		colony[i] = new Bacteria(250,250,0);
+ 	}
+ 	//one = new Bacteria(250,250,0);
+
+ 	//initialize bacteria variables here   
  }   
  void draw()   
  {    
- 	one.show();
- 	one.move();//move and show the bacteria   
+ 	for (int i = 0; i< colony.length; i++)
+ 	{
+ 	colony[i].show();
+ 	colony[i].move();
+ 	}//move and show the bacteria   
  }  
  class Bacteria    
  {  
@@ -35,7 +51,7 @@ Bacteria one;
  		myY = myY+(int)(Math.random()*3)-1;
 
 
- 		/*while (myY>=0 && myY <= 500 && myX>=0 && myX <= 500)
+ 		/*while (myY >=0 && myY <= 500 && myX>=0 && myX <= 500)
  		{
  			myY = myY + (int)(Math.random()*3-1);
  			myX = myX + (int)(Math.random()*3-1);
