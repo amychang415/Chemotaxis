@@ -1,10 +1,7 @@
 
-
-int centerX;
-int centerY;
-int trueCenterX;
-int trueCenterY;
+int rectangleColor = color(6, 16, 214);
 Bacteria[] colony;
+Wall[] room;
 
  //declare bacteria variables here   
  void setup()   
@@ -17,23 +14,58 @@ Bacteria[] colony;
  		colony[i] = new Bacteria(250,250,0);
  	}
  	//initialize bacteria variables here   
- }   
+ }  
+
+ class Wall 
+ {
+ 	int myX;
+ 	int myY;
+ 	int myW;
+ 	Wall(int x,int y)
+ 	{
+ 		myW = 50;
+ 		myX = x;
+ 		myY = y;
+ 	}
+ 	void show()
+ 	{
+ 		fill(rectangleColor);
+ 		rect(myX,myY,myW,myW);
+ 	}
+ }
+
+
+ void makeWalls()
+ {
+ 	int numWall=-1;
+ 	room = new Wall[500];
+ 	for (int i = 0; i< 500 ;i=i+50)
+ 	{
+ 		room[(i/50)] = new Wall (i,0);
+ 		room[(i/50)].show();
+ 		numWall = (i/50);
+ 	}
+
+ 	for (int n = 0; n< 500 ;n=n+50)
+ 	{
+ 		room[(n/50)+numWall] = new Wall (n,450);
+ 		room[(n/50)+numWall].show();
+ 		numWall = (n/50)+numWall;
+ 	}
+ }
  void draw()   
  {    
  	background(255);
- 	centerX = 0;
- 	centerY = 0;
- 	trueCenterX = 0;
- 	trueCenterY = 0;
+
  	for (int i = 0; i< colony.length; i++)
  	{
  	colony[i].show();
  	colony[i].move();
+ 	makeWalls();
  	}
- 	trueCenterX = centerX/colony.length;
- 	trueCenterY = centerY/colony.length;
- 	//move and show the bacteria   
- }  
+
+ }
+
  class Bacteria    
  {  
   	int endY = 500;
@@ -44,33 +76,16 @@ Bacteria[] colony;
  	
  	Bacteria(int x, int y, int col)
  	{
-
- 			myX = x;
- 			myY = y;
+ 		myX = x;
+ 		myY = y;
  		myColor = col;
-
  	}
 
  	void move()
  	{
- 		
- 		if (trueCenterX = 0 && trueCenterY = 0)
- 		{
+
  			myX = myX+(int)(Math.random()*3)-1;
  			myY = myY+(int)(Math.random()*3)-1;
- 		}
- 		else if (trueCenterX + 20 < myX )
- 		{
- 			myX = myX+(int)(Math.random()*2);
- 			myY = myY+(int)(Math.random()*3)-1;
- 		}
-
-
-
-
- 		centerX = centerX + myX;
- 		centerY = centerY+ myY;
-
  	}
 
  	void show()
