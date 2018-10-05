@@ -35,24 +35,6 @@ Wall[] room;
  	}
  }
 
- class Player
- {
- 	int myX;
- 	int myY;
- 	int myColor;
- 	Player(int x, int y, int col)
- 	{
- 		myX = X;
- 		myY = Y;
- 		myColor = col;
- 	}
- 	show()
- 	{
- 		fill(myColor);
- 		ellipse(myX,myY,50,50);
- 	}
- }
-
 
  void makeWalls()
  {
